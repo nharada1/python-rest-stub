@@ -1,0 +1,12 @@
+{
+    "name": "python-rest-stub",
+    "description": "Simple REST server w Python/Flask/Heroku",
+    "repository": "https://github.com/nharada1/python-rest-stub",
+    "addons": ["mongolab"],
+    "env": {
+        "ON_HEROKU": {
+            "description": "Should be True on Heroku",
+            "value": "True"
+        }
+    }
+}
