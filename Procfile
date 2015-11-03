@@ -1,1 +1,1 @@
-web: gunicorn rest_server:rest_app --chdir rest --log-file -
+web: gunicorn rest_server:rest_stub_app --chdir reststub --log-file -
