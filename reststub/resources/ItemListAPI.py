@@ -1,10 +1,12 @@
 from flask import abort, jsonify
 from flask.ext.restful import Resource, reqparse
 
-from reststub.database import db, encode_mongo_obj
+from reststub.globals import db, encode_mongo_obj, auth
 
 
 class ItemListAPI(Resource):
+    decorators = [auth.login_required]
+
     def __init__(self):
         self.reqparse = reqparse.RequestParser()
         self.reqparse.add_argument('name', type=str, location='json', required=True)

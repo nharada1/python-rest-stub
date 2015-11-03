@@ -1,7 +1,7 @@
 from flask import abort, jsonify
 from flask.ext.restful import Resource
 
-from reststub.database import db, encode_mongo_obj
+from reststub.globals import db, encode_mongo_obj
 
 
 class ItemAPI(Resource):
