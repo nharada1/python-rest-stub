@@ -1,6 +1,6 @@
 from flask import abort, jsonify
 
-from rest_stub.database import db
+from reststub.database import db
 
 
 class ItemListAPI(Resource):
@@ -8,4 +8,4 @@ class ItemListAPI(Resource):
         super(ItemListAPI, self).__init__()
 
     def get(self, name):
-        return
+        return db.find_one({"name": name})

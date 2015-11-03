@@ -1,7 +1,7 @@
 from flask import abort, jsonify
 from flask.ext.restful import Resource, reqparse
 
-from rest_stub.database import db
+from reststub.database import db
 
 
 class ItemAPI(Resource):
@@ -12,15 +12,14 @@ class ItemAPI(Resource):
         super(ItemAPI, self).__init__()
 
     def get(self):
-        return
+        found = [v for v in db.find()]
+        return found
 
     def post(self):
         args = self.reqparse.parse_args()
         try:
-            user = args['username']
-            hashed_pass = args['password']
-            offer = db.new_user(user, hashed_pass)
-            return offer
+            new_item = {"name": args['name'], "text": args['text']}
+            inserted_id = db.insert_one(new_item).inserted_id
+            return {'inserted': inserted_id}, 201
         except Exception as e:
-            print(e)
-            return {'error': e}
+            return {'error': e}, 500

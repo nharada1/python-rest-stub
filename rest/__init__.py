@@ -1,1 +1,1 @@
-from .money_server import money_app
+from .rest_server import rest_stub_app

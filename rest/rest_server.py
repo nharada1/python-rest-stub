@@ -2,8 +2,8 @@ from flask import Flask, make_response, jsonify
 from flask.ext.restful import Api
 from flask.ext.cors import CORS
 
-from rest_stub.resources import ItemAPI
-from rest_stub.resources import ItemListAPI
+from reststub.resources import ItemAPI
+from reststub.resources import ItemListAPI
 
 
 def init_app():
@@ -18,14 +18,15 @@ def init_app():
 
     return rest_stub
 
+rest_stub_app = init_app()
+
+@rest_stub_app.errorhandler(404)
+def not_found(error):
+    return make_response(jsonify({'error': 'Not found'}), 404)
+
 
 def run_server():
-    rest_stub_app = init_app()
     rest_stub_app.run(debug=True)
-
-    @rest_stub_app.errorhandler(404)
-    def not_found(error):
-        return make_response(jsonify({'error': 'Not found'}), 404)
 
 
 if __name__ == "__main__":
